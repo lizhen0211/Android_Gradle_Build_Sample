@@ -34,27 +34,31 @@ android {
         qh360 {
             applicationId "com.example.administrator.android_buide_sample.qh360"
             versionName "1.0-qh360"
-            manifestPlaceholders = [CHANNEL_NAME: name]
+            //manifestPlaceholders = [CHANNEL_NAME: name]
             signingConfig null
         }
         baidu {
             applicationId "com.example.administrator.android_buide_sample.baidu"
             versionName "1.0-baidu"
-            manifestPlaceholders = [CHANNEL_NAME: name]
+            //manifestPlaceholders = [CHANNEL_NAME: name]
             signingConfig null
         }
         demo {
             applicationId "com.example.administrator.android_buide_sample.demo"
             versionName "1.0-demo"
-            manifestPlaceholders = [CHANNEL_NAME: name]
+            //manifestPlaceholders = [CHANNEL_NAME: name]
             signingConfig null
         }
         full {
             applicationId "com.example.administrator.android_buide_sample.full"
             versionName "1.0-full"
-            manifestPlaceholders = [CHANNEL_NAME: name]
+            //manifestPlaceholders = [CHANNEL_NAME: name]
             signingConfig null
         }
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [ CHANNEL_NAME:name ]
     }
 }
 
