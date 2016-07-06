@@ -5,7 +5,20 @@ def applicationVersionName = 'version_name'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
+    signingConfigs {
+        debug {
+            keyAlias 'build'
+            keyPassword '111111'
+            storeFile file('../gradle_build.keystore')
+            storePassword '111111'
+        }
+        release {
+            keyAlias 'build'
+            keyPassword '111111'
+            storeFile file('../gradle_build.keystore')
+            storePassword '111111'
+        }
+    }
     defaultConfig {
         applicationId "com.example.administrator.android_buide_sample"
         minSdkVersion 14

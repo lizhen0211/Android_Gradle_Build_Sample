@@ -1,4 +1,4 @@
-package com.example.administrator.android_buide_sample;
+package com.example.administrator.android_build_sample;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -28,20 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         initUIComponent();
         setValue();
-        //String channelKey = applicationInfo.metaData.getString("CHANNEL_KEY");
-//        ApplicationInfo applicationInfo = null;
-//        try {
-//            applicationInfo = packageManager.getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        productKey = applicationInfo.metaData.getString(UUCIN_APP_KEY);
-//        channelKey = applicationInfo.metaData.getString(UUCIN_CHANNEL_KEY);
-//        appName = applicationInfo.metaData.getString(UUCIN_APP_NAME);
-//        market = applicationInfo.metaData.getString(UUCIN_CHANNEL_KEY);
-
     }
 
     private void setValue() {

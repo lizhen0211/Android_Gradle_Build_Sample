@@ -1,4 +1,4 @@
-package com.example.administrator.android_buide_sample;
+package com.example.administrator.android_build_sample;
 
 import org.junit.Test;
 
