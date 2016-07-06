@@ -7,16 +7,8 @@ android {
     buildToolsVersion "23.0.2"
     signingConfigs {
         debug {
-            keyAlias 'build'
-            keyPassword '111111'
-            storeFile file('../gradle_build.keystore')
-            storePassword '111111'
         }
         release {
-            keyAlias 'build'
-            keyPassword '111111'
-            storeFile file('../gradle_build.keystore')
-            storePassword '111111'
         }
     }
     defaultConfig {
@@ -43,21 +35,25 @@ android {
             applicationId "com.example.administrator.android_buide_sample.qh360"
             versionName "1.0-qh360"
             manifestPlaceholders = [CHANNEL_NAME: name]
+            signingConfig null
         }
         baidu {
             applicationId "com.example.administrator.android_buide_sample.baidu"
             versionName "1.0-baidu"
             manifestPlaceholders = [CHANNEL_NAME: name]
+            signingConfig null
         }
         demo {
             applicationId "com.example.administrator.android_buide_sample.demo"
             versionName "1.0-demo"
             manifestPlaceholders = [CHANNEL_NAME: name]
+            signingConfig null
         }
         full {
             applicationId "com.example.administrator.android_buide_sample.full"
             versionName "1.0-full"
             manifestPlaceholders = [CHANNEL_NAME: name]
+            signingConfig null
         }
     }
 }
@@ -67,3 +63,22 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
 }
+
+File propFile = file('signing.properties');
+if (propFile.exists()) {
+    def Properties props = new Properties()
+    props.load(new FileInputStream(propFile))
+    if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+    } else {
+        android.buildTypes.release.signingConfig = null
+    }
+} else {
+    android.buildTypes.release.signingConfig = null
+}
+
+
