@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-def applicationVersionName = 'version_name'
+def applicationVersionName = '2.2.2'
 
 android {
     compileSdkVersion 23
@@ -16,49 +16,50 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName applicationVersionName
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix '.r'
-            versionNameSuffix '.' + applicationVersionName + '.r'
+            applicationIdSuffix '.ra'
+            versionNameSuffix '.rv'
         }
         debug {
-            applicationIdSuffix '.d'
-            versionNameSuffix '.' + applicationVersionName + ".r"
+            applicationIdSuffix '.da'
+            versionNameSuffix '.dv'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            def apkPrefix = "pre";
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                File outputDirectory = new File(outputFile.parent);
+                def fileName
+                if (variant.buildType.name == "release") {
+                    // 输出apk名称为pre_versionname_channalname.apk
+                    fileName = apkPrefix + "_${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                } else {
+                    fileName = apkPrefix + "_${defaultConfig.versionName}_debug.apk"
+                }
+                output.outputFile = new File(outputDirectory, fileName)
+            }
+        }
+    }
+
     productFlavors {
         qh360 {
             applicationId "com.example.administrator.android_buide_sample.qh360"
-            versionName "1.0-qh360"
-            //manifestPlaceholders = [CHANNEL_NAME: name]
-            signingConfig null
         }
         baidu {
             applicationId "com.example.administrator.android_buide_sample.baidu"
-            versionName "1.0-baidu"
-            //manifestPlaceholders = [CHANNEL_NAME: name]
-            signingConfig null
-        }
-        demo {
-            applicationId "com.example.administrator.android_buide_sample.demo"
-            versionName "1.0-demo"
-            //manifestPlaceholders = [CHANNEL_NAME: name]
-            signingConfig null
-        }
-        full {
-            applicationId "com.example.administrator.android_buide_sample.full"
-            versionName "1.0-full"
-            //manifestPlaceholders = [CHANNEL_NAME: name]
-            signingConfig null
         }
     }
 
     productFlavors.all { flavor ->
-        flavor.manifestPlaceholders = [ CHANNEL_NAME:name ]
+        flavor.manifestPlaceholders = [CHANNEL_NAME: name]
     }
 }
 
