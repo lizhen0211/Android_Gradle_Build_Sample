@@ -69,6 +69,20 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
 }
 
+//dependencies {
+//    // The 'compile' configuration tells Gradle to add the dependency to the
+//    // compilation classpath and include it in the final package.
+//
+//    // Dependency on the "mylibrary" module from this project
+//    compile project(":mylibrary")
+//
+//    // Remote binary dependency
+//    compile 'com.android.support:appcompat-v7:23.4.0'
+//
+//    // Local binary dependency
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+//}
+
 File propFile = file('signing.properties');
 if (propFile.exists()) {
     def Properties props = new Properties()
